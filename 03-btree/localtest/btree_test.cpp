@@ -9,17 +9,16 @@ int main(void) {
     int delkeys[100] = {97, 69, 67, 50, 96, 15, 60, 11, 32, 2, 86, 48, 72, 56, 95, 49, 22, 83, 13, 94, 100, 5, 33, 12, 89, 73, 52, 64, 41, 85, 59, 25, 6, 54, 36, 44, 39, 61, 18, 46, 63, 42, 35, 77, 58, 19, 8, 31, 84, 3, 29, 30, 40, 91, 47, 26, 66, 78, 76, 53, 27, 92, 74, 57, 75, 24, 62, 10, 17, 51, 88, 98, 68, 79, 82, 99, 20, 28, 70, 55, 80, 71, 23, 34, 16, 65, 93, 81, 21, 4, 87, 90, 43, 45, 7, 38, 37, 9, 1, 14};
 
     for (int key : keys) {
+        std::cout << "Insert " << key << std::endl;
         btree.insert(key);
+        std::cout << btree.format() << std::endl;
     }
-    
-    std::cout << "B-Tree 구조:" << std::endl;
-    std::cout << btree.format() << std::endl;
 
     std::cout << "---------------------" << std::endl;
 
     for (int key : delkeys) {
+        std::cout << "Delete " << key << std::endl;
         btree.remove(key);
-        std::cout << "\nB-Tree 구조:" << std::endl;
         std::cout << btree.format() << std::endl;
     }
 

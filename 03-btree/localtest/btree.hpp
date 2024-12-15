@@ -261,6 +261,7 @@ bool BTree<T, B>::remove(const T& t) {
     if (root->n == 0 && root->type == NodeType::INTERNAL) {
         auto prev_root = root;
         root = root->edges[0];
+        prev_root->type = NodeType::LEAF;
         delete prev_root;
     }
 
@@ -418,9 +419,11 @@ bool BTreeNode<T, B>::merge_children(BTreeNode<T, B> & node, size_t idx) {
 
     node.n -= 1;
 
-    delete sibling;
-    node.edges[node.n + 1] = nullptr;
+    for (size_t i = 0; i <= sibling->n; i++) {
+        sibling->edges[i] = nullptr;
+    }
 
+    delete sibling;
     return true;
 }
 
